@@ -19,21 +19,30 @@ export default function ContactThumbnail({
   textColor,
   onPress,
 }) {
+
   const colorStyle = {
     color: textColor,
   };
   const ImageComponent = onPress ? TouchableOpacity : View;
 
+  renderAvatarImage = ( avatar ) => {
+    if ( avatar !== '' ){
+      return (
+        <ImageComponent onPress={onPress}>
+          <Image
+            source={{
+              uri: avatar,
+            }}
+            style={styles.avatar}
+          />
+        </ImageComponent>
+      );
+    }
+  }
+
   return (
     <View style={styles.container}>
-      <ImageComponent onPress={onPress}>
-        <Image
-          source={{
-            uri: avatar,
-          }}
-          style={styles.avatar}
-        />
-      </ImageComponent>
+      { this.renderAvatarImage( avatar ) }
       {name !== '' && <Text style={[styles.name, colorStyle]}>{name}</Text>}
 
       {phone !== '' && (
@@ -57,6 +66,7 @@ ContactThumbnail.propTypes = {
 ContactThumbnail.defaultProps = {
   name: '',
   phone: '',
+  avatar: '',
   textColor: 'white',
   onPress: null,
 };

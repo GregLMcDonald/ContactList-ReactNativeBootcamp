@@ -43,7 +43,9 @@ ContactListItem.propTypes = {
   onPress: PropTypes.func.isRequired,
 };
 
-
+ContactListItem.defaultProps = {
+  onPress: () => {},
+}
 const styles = StyleSheet.create({
   container: {
     paddingLeft: 24,
